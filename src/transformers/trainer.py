@@ -5237,7 +5237,9 @@ class Trainer:
         num_items_in_batch = None
         for _ in range(num_batches):
             try:
-                batch_samples += [next(epoch_iterator)]
+                item = next(epoch_iterator)
+                if item is not None:
+                    batch_samples += [item]
             except StopIteration:
                 break
 
